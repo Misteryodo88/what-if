@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f7f5">
+
+  <title>УГАДАЙ — Проверь, насколько хорошо тебя знают</title>
+
+  <meta name="description" content="Придумай вопрос, отправь другу и проверь, сможет ли он угадать правильный ответ.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ШАПКА -->
+  <header class="header">
+    <div class="container header-inner">
+
+      <a href="#" class="logo">
+        <span class="logo-icon">?</span>
+        УГАДАЙ<span class="logo-dot">.</span>
+      </a>
+
+      <div class="header-label">
+        Маленькая игра между друзьями
+      </div>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- СТРАНИЦА СОЗДАНИЯ ИГРЫ -->
+    <section class="hero" id="heroSection">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="hero-label">
+            <span class="status-dot"></span>
+            Игра начинается здесь
+          </div>
+
+          <h1>
+            Думаешь,<br>
+            ты <span>знаешь</span><br>
+            меня?
+          </h1>
+
+          <p class="hero-description">
+            Придумай вопрос, отправь ссылку другу
+            и узнай, сможет ли он угадать правильный ответ.
+          </p>
+
+        </div>
+
+
+        <!-- ФОРМА СОЗДАНИЯ -->
+        <div class="game-card" id="creatorView">
+
+          <div class="card-header">
+
+            <div>
+              <div class="card-step">СОЗДАНИЕ ИГРЫ</div>
+              <h2>Задай свой вопрос</h2>
+            </div>
+
+            <div class="step-number">01 / 01</div>
+
+          </div>
+
+
+          <!-- ВОПРОС -->
+          <div class="form-group">
+
+            <label for="question">
+              Твой вопрос
+            </label>
+
+            <textarea
+              id="question"
+              placeholder="Например: Что я сегодня купил?"
+              rows="2"
+              maxlength="300"
+            ></textarea>
+
+            <div class="field-hint">
+              Придумай любой вопрос о себе
+            </div>
+
+          </div>
+
+
+          <!-- ВАРИАНТЫ ОТВЕТА -->
+          <div class="form-group">
+
+            <div class="options-heading">
+
+              <label>Варианты ответа</label>
+
+              <span class="options-counter">
+                2–10 вариантов
+              </span>
+
+            </div>
+
+
+            <div class="options-list" id="optionsList">
+
+              <div class="option-item">
+
+                <span class="option-number">01</span>
+
+                <input
+                  type="text"
+                  placeholder="Первый вариант"
+                  maxlength="100"
+                >
+
+                <label class="correct-control">
+
+                  <input
+                    type="radio"
+                    name="correct"
+                    value="0"
+                    checked
+                  >
+
+                  <span class="radio-custom"></span>
+
+                </label>
+
+                <button
+                  class="remove-option"
+                  type="button"
+                  aria-label="Удалить вариант"
+                >×</button>
+
+              </div>
+
+
+              <div class="option-item">
+
+                <span class="option-number">02</span>
+
+                <input
+                  type="text"
+                  placeholder="Второй вариант"
+                  maxlength="100"
+                >
+
+                <label class="correct-control">
+
+                  <input
+                    type="radio"
+                    name="correct"
+                    value="1"
+                  >
+
+                  <span class="radio-custom"></span>
+
+                </label>
+
+                <button
+                  class="remove-option"
+                  type="button"
+                  aria-label="Удалить вариант"
+                >×</button>
+
+              </div>
+
+            </div>
+
+
+            <button class="add-option" type="button">
+              <span>+</span>
+              Добавить вариант
+            </button>
+
+            <div class="field-hint">
+              Отметь кружок рядом с правильным ответом
+            </div>
+
+          </div>
+
+
+          <div class="divider"></div>
+
+
+          <!-- СОЗДАНИЕ -->
+          <button class="create-button" type="button">
+
+            Создать игру
+
+            <span class="button-arrow">→</span>
+
+          </button>
+
+
+          <p class="privacy-note">
+            <span>🔒</span>
+            Правильный ответ увидит только автор и система проверки
+          </p>
+
+        </div>
+
+
+        <div class="bottom-note">
+
+          <div class="bottom-note-icon">✳</div>
+
+          <p>
+            Отправь ссылку другу.<br>
+            Посмотрим, насколько хорошо он тебя знает.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- СТРАНИЦА ПРОХОЖДЕНИЯ ИГРЫ -->
+    <section class="container" id="gamePage" hidden>
+
+      <div class="game-card" id="gameView">
+
+        <div class="game-label">
+          ТЕБЕ ПРЕДСТОИТ УГАДАТЬ
+        </div>
+
+        <h2 id="friendQuestion"></h2>
+
+        <div
+          class="friend-options"
+          id="friendOptions"
+        ></div>
+
+        <button
+          class="create-button"
+          id="answerButton"
+          type="button"
+          disabled
+        >
+          Ответить
+          <span class="button-arrow">→</span>
+        </button>
+
+        <div
+          class="friend-result"
+          id="friendResult"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ПОДВАЛ -->
+  <footer class="footer">
+
+    <div class="container footer-inner">
+
+      <a href="#" class="logo footer-logo">
+        <span class="logo-icon">?</span>
+        УГАДАЙ<span class="logo-dot">.</span>
+      </a>
+
+      <span>
+        Простая игра. Интересные ответы.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
